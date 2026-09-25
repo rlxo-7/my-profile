@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烏野高校排球部メンバー5人</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-sky-50 to-white">
+    <header class="border-b border-orange-600 bg-black mb-8">
+        <div class="mx-auto flex max-w-4xl flex-col gap-4 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-orange-500">烏野高校排球部メンバー</h1>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <button id="AllBtn" class="bg-gray-800 text-white px-3 py-1.5 rounded-lg text-xl hover:bg-gray-700 transition">全員</button>
+                <button id="SBtn" class="bg-gray-800 text-white px-3 py-1.5 rounded-lg text-xl hover:bg-gray-700 transition">セッター</button>
+                <button id="MbBtn" class="bg-gray-800 text-white px-3 py-1.5 rounded-lg text-xl hover:bg-gray-700 transition">ミドルブロッカー</button>
+                <button id="MgBtn" class="bg-gray-800 text-white px-3 py-1.5 rounded-lg text-xl hover:bg-gray-700 transition">マネージャー</button>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div id="Card" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </main>
+    <script>
+        const members = [
+            { name: '日向 翔陽', role: 'ミドルブロッカー', comment: '類稀な瞬発力、跳躍力、そしてどんな時でも諦めない強い心を持つ。' },
+            { name: '影山 飛雄', role: 'セッター', comment: '圧倒的センスでコートを支配する、人呼んで“コート上の王様”' },
+            { name: '月島 蛍', role: 'ミドルブロッカー', comment: '前のめりな性格が多い烏野高校1年生の中でも特に異彩を放つ、クレバーブロッカー。' },
+            { name: '菅原 孝支', role: 'セッター', comment: '澤村と共にチームをまとめ、日向・影山の入学前から部員の厚い信頼を集めるセッター！' },
+            { name: '清水 潔子', role: 'マネージャー', comment: '男だらけの烏野排球部に咲く一輪の花！' }
+        ]
+
+        const Card = document.querySelector("#Card")
+
+        function getRoleBadgeColor(role) {
+    if (role === 'セッター') return 'bg-blue-100 text-blue-800';
+    if (role === 'ミドルブロッカー') return 'bg-green-100 text-green-800';
+    if (role === 'マネージャー') return 'bg-pink-100 text-pink-800';
+    return 'bg-gray-100 text-gray-800';
+}
+
+        function renderMembers(memberList) {
+            Card.innerHTML = '';
+
+
+        members.forEach((member) => {
+            const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl shadow-md p-6 border border-gray-100 flex flex-col justify-between hover:shadow-lg transition';
+                card.innerHTML = `
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h2 class="text-xl font-bold text-gray-800">${member.name}</h2>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full ${getRoleBadgeColor(member.role)} whitespace-nowrap">${member.role}
+                        </span>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">${member.comment}</p>
+                </div>
+                `;
+
+                Card.appendChild(card);
+                });
+                }
+                renderMembers(members);
+
+
+    </script>
+</body>
+</html>
